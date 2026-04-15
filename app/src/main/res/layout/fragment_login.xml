@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginFragment">
+    tools:context=".view.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -59,6 +59,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView2">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtUsername"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Username*" />
@@ -76,20 +77,21 @@
                     app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Password*" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btnLogin"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="30dp"
-                    android:text="Button"
+                    android:text="Login"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

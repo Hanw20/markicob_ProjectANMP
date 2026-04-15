@@ -1,12 +1,15 @@
-package com.markicob.Project_ANMP
+package com.markicob.Project_ANMP.view
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.markicob.Project_ANMP.R
 
 class MainActivity : AppCompatActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -17,4 +20,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
+
+
 }

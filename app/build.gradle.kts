@@ -1,11 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
     namespace = "com.markicob.Project_ANMP"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.markicob.Project_ANMP"
@@ -26,6 +27,10 @@ android {
             )
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -36,6 +41,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.volley)
+    implementation(libs.gson)
+
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.coroutinesCore)
     implementation(libs.androidx.core.ktx)
@@ -45,6 +53,9 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.cardview)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
