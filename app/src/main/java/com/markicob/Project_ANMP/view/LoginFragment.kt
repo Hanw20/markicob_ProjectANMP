@@ -27,9 +27,13 @@ class LoginFragment : Fragment() {
             val username = binding.txtUsername.text.toString()
             val password = binding.txtPassword.text.toString()
 
-            val action = LoginFragmentDirections.actionHabitListFragment()
-            // Navigation.findNavController(it).navigate(action)
-            it.findNavController().navigate(action)
+            if (username == "student" && password == "123") {
+                val action = LoginFragmentDirections.actionHabitListFragment()
+                it.findNavController().navigate(action)
+            } else {
+                binding.txtErrorLogin.visibility = View.VISIBLE
+                binding.txtErrorLogin.text = "Username atau password salah!"
+            }
         }
 
 
