@@ -13,16 +13,48 @@ class ListViewModel: ViewModel() {
         habitLoadErrorLD.value = false  	// tidak ada error
 
         habitsLD.value = arrayListOf(
-//            Student("16055","Nonie","1998/03/28","5718444778","http://dummyimage.com/75x100"
-//                    + ".jpg/cc0000/ffffff"),
-//            Student("13312","Rich","1994/12/14","3925444073","http://dummyimage.com/75x100" +
-//                    ".jpg/5fa2dd/ffffff"),
-//            Student("11204","Dinny","1994/10/07","6827808747",
-//                "http://dummyimage.com/75x100.jpg/5fa2dd/ffffff1")
+            Habit(
+                id = "1",
+                habitName = "Drink Water",
+                description = "Stay hydrated throughout the day",
+                progress = 3,
+                goal = 8,
+                unit = "glasses",
+                icon = "water"
+            ),
+            Habit(
+                id = "2",
+                habitName = "Exercise",
+                description = "Daily workout routine",
+                progress = 15,
+                goal = 30,
+                unit = "minutes",
+                icon = "exercise"
+            ),
+            Habit(
+                id = "3",
+                habitName = "Read Books",
+                description = "Expand your knowledge",
+                progress = 20,
+                goal = 20,
+                unit = "pages",
+                icon = "book"
+            ),
+            Habit(
+                id = "4",
+                habitName = "Walk",
+                description = "Walk at least 10.000 steps a day",
+                progress = 0,
+                goal = 10000,
+                unit = "steps",
+                icon = "walk"
+            )
         )
 
         habitLoadErrorLD.value = false
         loadingLD.value = false
     }
+
+
 
 }

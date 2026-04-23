@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.markicob.Project_ANMP"
-    compileSdk = 34
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.markicob.Project_ANMP"

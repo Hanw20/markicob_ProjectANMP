@@ -11,30 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.markicob.Project_ANMP.R
 import com.markicob.Project_ANMP.databinding.FragmentHabitListBinding
 import com.markicob.Project_ANMP.viewmodel.ListViewModel
+//import kotlin.io.root
 
 class HabitListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
     private val studentListAdapter  = HabitListAdapter(arrayListOf())
     private lateinit var binding: FragmentHabitListBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHabitListBinding.inflate(inflater,container, false)
-        return binding.root
-
-        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-        viewModel.refresh()
-
-        binding.recViewHabit.layoutManager = LinearLayoutManager(context)
-        binding.recViewHabit.adapter = studentListAdapter
-
-        observeViewModel()
-
-
-    }
 
     fun observeViewModel() {
         viewModel.habitsLD.observe(viewLifecycleOwner, Observer {
@@ -59,6 +42,40 @@ class HabitListFragment : Fragment() {
 
 
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentHabitListBinding.inflate(inflater,container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
+        viewModel.refresh()
+
+        binding.recViewHabit.layoutManager = LinearLayoutManager(context)
+        binding.recViewHabit.adapter = studentListAdapter
+
+        observeViewModel()
+
+        binding.refreshLayout.setOnRefreshListener {
+            binding.recViewHabit.visibility = View.GONE
+            binding.txtError.visibility = View.GONE
+            binding.progressLoad.visibility = View.VISIBLE
+            viewModel.refresh()
+            binding.refreshLayout.isRefreshing = false
+        }
+    }
+
+
 
 
 }
