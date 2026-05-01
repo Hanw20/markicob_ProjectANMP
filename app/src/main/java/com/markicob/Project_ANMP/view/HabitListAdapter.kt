@@ -55,10 +55,10 @@ class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListView
 
         holder.binding.tvStatus.background = drawable
         holder.binding.btnAdd.setOnClickListener {
-            habit.progress = (habit.progress ?: 0) + 1
+            viewModel.updateProgress(position, 1)
         }
         holder.binding.btnMin.setOnClickListener {
-            habit.progress = (habit.progress ?: 0) - 1
+            viewModel.updateProgress(position, -1)
         }
 
     }

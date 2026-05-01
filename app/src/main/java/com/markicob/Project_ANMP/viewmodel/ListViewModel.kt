@@ -11,7 +11,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     val loadingLD = MutableLiveData<Boolean>()
     fun refresh() {
         loadingLD.value = true
-        habitLoadErrorLD.value = false  
+        habitLoadErrorLD.value = false
 
         habitsLD.value = arrayListOf(
             Habit(
@@ -52,17 +52,22 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
             )
         )
 
-        fun addHabit(habit: Habit) {
-            val currentList = habitsLD.value ?: arrayListOf()
-            currentList.add(habit)
-            repository.saveHabits(currentList)
-            habitsLD.value = currentList
-        }
-
         habitLoadErrorLD.value = false
         loadingLD.value = false
     }
+    fun addHabit(habit: Habit) {
+        val currentList = habitsLD.value ?: arrayListOf()
+        currentList.add(habit)
+        //repository.saveHabits(currentList)
+        habitsLD.value = currentList
+    }
 
-
-
+    fun updateProgress(position: Int, delta: Int) {
+        val currentList = habitsLD.value ?: return
+        val habit = currentList[position]
+        val newProgress = ((habit.progress ?: 0) + delta).coerceAtLeast(0)
+        habit.progress = newProgress
+       // repository.saveHabits(currentList)
+        habitsLD.value = currentList
+    }
 }
