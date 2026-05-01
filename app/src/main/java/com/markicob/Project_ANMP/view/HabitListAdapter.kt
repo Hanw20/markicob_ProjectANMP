@@ -26,8 +26,7 @@ class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListView
 
         holder.binding.txtHabitName.text = habit.habitName
         holder.binding.txtDescription.text = habit.description
-
-        // ImageView dikosongkan dulu, isi sendiri nanti sesuai iconResName
+        
         // holder.binding.imgIcon.setImageResource(...)
 
         // Progress bar
