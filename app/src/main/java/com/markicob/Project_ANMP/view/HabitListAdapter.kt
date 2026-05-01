@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.markicob.Project_ANMP.databinding.HabitListItemBinding
 import com.markicob.Project_ANMP.model.Habit
+import com.markicob.Project_ANMP.viewmodel.ListViewModel
 
-class HabitListAdapter(val habitList : ArrayList<Habit>)
+class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListViewModel)
     :RecyclerView.Adapter<HabitListAdapter.HabitViewHolder>() {
 
     class HabitViewHolder(var binding: HabitListItemBinding)
@@ -18,21 +19,24 @@ class HabitListAdapter(val habitList : ArrayList<Habit>)
         val binding = HabitListItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false)
         return HabitViewHolder(binding)
-
     }
 
-    override fun onBindViewHolder(
-        holder: HabitViewHolder,
-        position: Int
-    ) {
-        holder.binding.txtHabitName.text = habitList[position].habitName
-        holder.binding.txtDescription.text = habitList[position].description
+    override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
+        val habit = habitList[position]
+
+        holder.binding.txtHabitName.text = habit.habitName
+        holder.binding.txtDescription.text = habit.description
+
+        // ImageView dikosongkan dulu, isi sendiri nanti sesuai iconResName
+        // holder.binding.imgIcon.setImageResource(...)
+
         // Progress bar
-        val progress = habitList[position].progress ?: 0
-        val goal = habitList[position].goal ?: 1
+        val progress = habit.progress ?: 0
+        val goal = habit.goal ?: 1
+
         holder.binding.progressBar.max = goal
         holder.binding.progressBar.progress = progress
-        holder.binding.txtProgress.text = "$progress / $goal ${habitList[position].unit}"
+        holder.binding.txtProgress.text = "$progress / $goal ${habit.unit}"
 
         // Status label
         val drawable = GradientDrawable()
@@ -51,10 +55,10 @@ class HabitListAdapter(val habitList : ArrayList<Habit>)
 
         holder.binding.tvStatus.background = drawable
         holder.binding.btnAdd.setOnClickListener {
-            habitList[position].progress = (habitList[position].progress ?: 0) + 1
+            habit.progress = (habit.progress ?: 0) + 1
         }
         holder.binding.btnMin.setOnClickListener {
-            habitList[position].progress = (habitList[position].progress ?: 0) - 1
+            habit.progress = (habit.progress ?: 0) - 1
         }
 
     }
@@ -68,8 +72,4 @@ class HabitListAdapter(val habitList : ArrayList<Habit>)
         habitList.addAll(newHabitList)
         notifyDataSetChanged()
     }
-
-
-
-
 }

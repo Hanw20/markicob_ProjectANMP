@@ -35,8 +35,5 @@ class LoginFragment : Fragment() {
                 binding.txtErrorLogin.text = "Username atau password salah!"
             }
         }
-
-
-
     }
 }

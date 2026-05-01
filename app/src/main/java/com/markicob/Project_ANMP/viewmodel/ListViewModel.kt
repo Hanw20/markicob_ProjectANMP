@@ -1,16 +1,17 @@
 package com.markicob.Project_ANMP.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.markicob.Project_ANMP.model.Habit
 
-class ListViewModel: ViewModel() {
+class ListViewModel(application: Application) : AndroidViewModel(application) {
     val habitsLD = MutableLiveData<ArrayList<Habit>>()
     val habitLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     fun refresh() {
-        loadingLD.value = true 			// progress bar start muncul
-        habitLoadErrorLD.value = false  	// tidak ada error
+        loadingLD.value = true
+        habitLoadErrorLD.value = false  
 
         habitsLD.value = arrayListOf(
             Habit(
@@ -50,6 +51,13 @@ class ListViewModel: ViewModel() {
                 icon = "walk"
             )
         )
+
+        fun addHabit(habit: Habit) {
+            val currentList = habitsLD.value ?: arrayListOf()
+            currentList.add(habit)
+            repository.saveHabits(currentList)
+            habitsLD.value = currentList
+        }
 
         habitLoadErrorLD.value = false
         loadingLD.value = false

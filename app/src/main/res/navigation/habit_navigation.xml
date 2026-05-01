@@ -9,7 +9,11 @@
         android:id="@+id/habitListFragment"
         android:name="com.markicob.Project_ANMP.view.HabitListFragment"
         android:label="fragment_habit_list"
-        tools:layout="@layout/fragment_habit_list" />
+        tools:layout="@layout/fragment_habit_list" >
+        <action
+            android:id="@+id/actionNewHabitFragment"
+            app:destination="@id/newHabitFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.markicob.Project_ANMP.view.LoginFragment"
@@ -19,4 +23,9 @@
             android:id="@+id/actionHabitListFragment"
             app:destination="@id/habitListFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/newHabitFragment"
+        android:name="com.markicob.Project_ANMP.view.NewHabitFragment"
+        android:label="fragment_new_habit"
+        tools:layout="@layout/fragment_new_habit" />
 </navigation>

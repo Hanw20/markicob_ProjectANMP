@@ -7,21 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.markicob.Project_ANMP.R
 import com.markicob.Project_ANMP.databinding.FragmentHabitListBinding
 import com.markicob.Project_ANMP.viewmodel.ListViewModel
-//import kotlin.io.root
 
 class HabitListFragment : Fragment() {
 
     private lateinit var viewModel: ListViewModel
-    private val studentListAdapter  = HabitListAdapter(arrayListOf())
+    private lateinit var habitListAdapter: HabitListAdapter
     private lateinit var binding: FragmentHabitListBinding
 
     fun observeViewModel() {
         viewModel.habitsLD.observe(viewLifecycleOwner, Observer {
-            studentListAdapter.updateHabitList(it)
+            habitListAdapter.updateHabitList(it)
         })
         viewModel.habitLoadErrorLD.observe(viewLifecycleOwner, Observer {
             if(it == true) {
@@ -58,24 +57,23 @@ class HabitListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
-        viewModel.refresh()
+        viewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
+        habitListAdapter = HabitListAdapter(arrayListOf(), viewModel)
 
         binding.recViewHabit.layoutManager = LinearLayoutManager(context)
-        binding.recViewHabit.adapter = studentListAdapter
+        binding.recViewHabit.adapter = habitListAdapter
 
+        viewModel.refresh()
         observeViewModel()
 
         binding.refreshLayout.setOnRefreshListener {
-            binding.recViewHabit.visibility = View.GONE
-            binding.txtError.visibility = View.GONE
-            binding.progressLoad.visibility = View.VISIBLE
             viewModel.refresh()
             binding.refreshLayout.isRefreshing = false
         }
+
+        binding.fabAdd.setOnClickListener {
+            val action = HabitListFragmentDirections.actionNewHabitFragment()
+            it.findNavController().navigate(action)
+        }
     }
-
-
-
-
 }
