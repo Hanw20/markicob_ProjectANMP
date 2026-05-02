@@ -5,6 +5,7 @@ import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.markicob.Project_ANMP.R
 import com.markicob.Project_ANMP.databinding.HabitListItemBinding
 import com.markicob.Project_ANMP.model.Habit
 import com.markicob.Project_ANMP.viewmodel.ListViewModel
@@ -59,6 +60,19 @@ class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListView
         holder.binding.btnMin.setOnClickListener {
             viewModel.updateProgress(position, -1)
         }
+        val iconRes = when (habit.icon) {
+            "Water" -> R.drawable.ic_water
+            "Exercise" -> R.drawable.ic_fitness
+            "Read" -> R.drawable.ic_book
+            "Walk" -> R.drawable.ic_walk
+            "Meditation" -> R.drawable.ic_meditation
+            "Diet" -> R.drawable.ic_diet
+            "Sleep" -> R.drawable.ic_sleep
+            "Medicine" -> R.drawable.ic_medicine
+            "Study" -> R.drawable.ic_study
+            else -> R.drawable.ic_other
+        }
+        holder.binding.imgIcon.setImageResource(iconRes)
 
     }
 
