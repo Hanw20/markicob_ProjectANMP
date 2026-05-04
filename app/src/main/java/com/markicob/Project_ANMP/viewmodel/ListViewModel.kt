@@ -10,18 +10,18 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     val habitsLD = MutableLiveData<ArrayList<Habit>>()
     val habitLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
-
+    private val fileHelper = FileHelper(getApplication())
     private var allHabits = arrayListOf<Habit>()
     fun refresh() {
         loadingLD.value = true
-        val savedHabits = FileHelper.loadHabits(getApplication())
+        val savedHabits = fileHelper.loadHabits(getApplication())
         if (savedHabits.isEmpty()) {
             val dummy = arrayListOf(
                 Habit("1", "Drink Water", "Stay hydrated", 3, 8, "glasses", "Water"),
                 Habit("2", "Exercise", "Daily workout", 15, 30, "minutes", "Exercise")
             )
             habitsLD.value = dummy
-            FileHelper.saveHabits(getApplication(), dummy)
+            fileHelper.saveHabits(getApplication(), dummy)
         } else{
             habitsLD.value = savedHabits
         }
@@ -39,7 +39,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         val currentList = habitsLD.value ?: arrayListOf()
         currentList.add(habit)
         habitsLD.value = currentList
-        FileHelper.saveHabits(getApplication(), currentList)
+        fileHelper.saveHabits(getApplication(), currentList)
     }
 
     fun updateProgress(position: Int, delta: Int) {
@@ -49,6 +49,6 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         habit.progress = newProgress
        // repository.saveHabits(currentList)
         habitsLD.value = currentList
-        FileHelper.saveHabits(getApplication(),currentList)
+        fileHelper.saveHabits(getApplication(),currentList)
     }
 }
