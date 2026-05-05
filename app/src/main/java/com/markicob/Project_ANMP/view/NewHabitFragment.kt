@@ -35,7 +35,7 @@ class NewHabitFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
 
-        // Setup spinner icon
+        // Setup spinner
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, iconOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerIcon.adapter = adapter

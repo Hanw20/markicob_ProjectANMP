@@ -13,7 +13,6 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
     val habitLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     private val fileHelper = FileHelper(getApplication())
-    private var allHabits = arrayListOf<Habit>()
     fun refresh() {
         loadingLD.value = true
         val savedHabits = fileHelper.readFromFile()
@@ -31,17 +30,10 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
             val habitsFromFile: ArrayList<Habit> = Gson().fromJson(savedHabits, type)
             habitsLD.value = habitsFromFile
         }
-       //habitsLD.value = allHabits
-       // habitLoadErrorLD.value = false
         loadingLD.value = false
         habitLoadErrorLD.value = false
     }
     fun addHabit(habit: Habit) {
-        //val currentList = habitsLD.value ?: arrayListOf()
-        //currentList.add(habit)
-        //allHabits.add(habit)
-        //repository.saveHabits(currentList)
-        //habitsLD.value = allHabits
         val currentList = habitsLD.value ?: arrayListOf()
         currentList.add(habit)
         habitsLD.value = currentList
@@ -54,7 +46,6 @@ class ListViewModel(application: Application) : AndroidViewModel(application) {
         val habit = currentList[position]
         val newProgress = ((habit.progress ?: 0) + delta).coerceAtLeast(0)
         habit.progress = newProgress
-       // repository.saveHabits(currentList)
         habitsLD.value = currentList
         val jsonString = Gson().toJson(currentList)
         fileHelper.writeToFile(jsonString)
