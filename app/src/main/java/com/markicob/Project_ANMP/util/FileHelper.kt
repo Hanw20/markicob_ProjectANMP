@@ -6,7 +6,7 @@ import com.google.gson.reflect.TypeToken
 import com.markicob.Project_ANMP.model.Habit
 
 class FileHelper (private val context: Context) {
-    private const val fileName = "habits.json"
+    private val fileName = "habits.json"
 
     fun saveHabits(context: Context, habits: ArrayList<Habit>) {
         val gson = Gson()
