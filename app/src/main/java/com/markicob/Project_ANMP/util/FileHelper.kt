@@ -1,31 +1,41 @@
 package com.markicob.Project_ANMP.util
 
 import android.content.Context
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.markicob.Project_ANMP.model.Habit
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 
-class FileHelper (private val context: Context) {
-    private val fileName = "habits.json"
 
-    fun saveHabits(context: Context, habits: ArrayList<Habit>) {
-        val gson = Gson()
-        val jsonString = gson.toJson(habits)
-        context.openFileOutput(fileName, Context.MODE_PRIVATE).use {
-            it.write(jsonString.toByteArray())
+class FileHelper(val context: Context) {
+    val folderName = "myfolder"
+    val fileName = "habits.txt"
+
+    private fun getFile(): File {
+        val dir = File(context.filesDir, folderName)
+        if (!dir.exists()) {
+            dir.mkdirs() // bikin folder jika folder belum ada
+        }
+        return File(dir, fileName)
+    }
+    fun writeToFile(data: String) {
+        try {
+            val file = getFile()
+            FileOutputStream(file, false).use { output ->
+                output.write(data.toByteArray())
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
     }
-
-    fun loadHabits(context: Context): ArrayList<Habit> {
-        val file = context.getFileStreamPath(fileName)
-        if (!file.exists()) return arrayListOf()
-
+    fun readFromFile(): String {
         return try {
-            val jsonString = context.openFileInput(fileName).bufferedReader().use { it.readText() }
-            val type = object : TypeToken<ArrayList<Habit>>() {}.type
-            Gson().fromJson(jsonString, type)
-        } catch (e: Exception) {
-            arrayListOf()
+            val file = getFile()
+            file.bufferedReader().useLines { lines ->
+                lines.joinToString("\n")
+            }
+        } catch (e: IOException) {
+            e.printStackTrace().toString()
+            "" // Kembalikan string kosong jika error
         }
     }
 }
