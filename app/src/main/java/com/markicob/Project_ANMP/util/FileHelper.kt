@@ -13,7 +13,7 @@ class FileHelper(val context: Context) {
     private fun getFile(): File {
         val dir = File(context.filesDir, folderName)
         if (!dir.exists()) {
-            dir.mkdirs() // bikin folder jika folder belum ada
+            dir.mkdirs()
         }
         return File(dir, fileName)
     }
