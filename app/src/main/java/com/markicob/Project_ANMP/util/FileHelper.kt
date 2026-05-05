@@ -35,7 +35,7 @@ class FileHelper(val context: Context) {
             }
         } catch (e: IOException) {
             e.printStackTrace().toString()
-            "" // Kembalikan string kosong jika error
+            ""
         }
     }
 }
