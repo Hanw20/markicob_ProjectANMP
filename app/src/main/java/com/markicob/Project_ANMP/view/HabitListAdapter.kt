@@ -28,6 +28,7 @@ class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListView
         holder.binding.txtHabitName.text = habit.habitName
         holder.binding.txtDescription.text = habit.description
         
+        // holder.binding.imgIcon.setImageResource(...)
 
         // Progress bar
         val progress = habit.progress ?: 0
@@ -45,13 +46,11 @@ class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListView
             holder.binding.tvStatus.setTextColor(Color.WHITE)
             holder.binding.tvStatus.text = "Completed"
             holder.binding.imgCheckmark.visibility = android.view.View.VISIBLE
-            holder.binding.btnAdd.isEnabled=false
         } else {
             drawable.setColor(Color.parseColor("#E0E0E0"))
             holder.binding.tvStatus.setTextColor(Color.BLACK)
             holder.binding.tvStatus.text = "In Progress"
             holder.binding.imgCheckmark.visibility = android.view.View.GONE
-            holder.binding.btnAdd.isEnabled=true
         }
 
         holder.binding.tvStatus.background = drawable

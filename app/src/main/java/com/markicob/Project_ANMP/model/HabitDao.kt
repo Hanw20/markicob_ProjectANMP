@@ -12,8 +12,8 @@ interface HabitDao{
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun insertAll (vararg habit: Habit)
 
-//    @Update
-//    fun updateHabit(habit: Habit)
+    @Update
+    fun updateHabit(habit: Habit)
 
     @Delete
     fun deleteHabit(habit: Habit)

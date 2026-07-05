@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    arrayOf(Habit::class), version=1
+    arrayOf(Habit::class, User::class), version=1
 )
 abstract class HabitDatabase : RoomDatabase(){
     abstract fun habitDao(): HabitDao
+    abstract fun userDao(): UserDao
 
     companion object{
         @Volatile
@@ -18,11 +19,18 @@ abstract class HabitDatabase : RoomDatabase(){
         private val LOCK = Any()
 
         fun buildDatabase(context: Context) =
-            Room.databaseBuilder(
-                context.applicationContext,
-                HabitDatabase::class.java,
-                "habitdb"
-            ).build()
+            instance ?: synchronized(LOCK) {
+                instance ?: Room.databaseBuilder(
+                    context.applicationContext,
+                    HabitDatabase::class.java,
+                    "habitdb"
+                ).build().also { instance = it }
+            }
+//            Room.databaseBuilder(
+//                context.applicationContext,
+//                HabitDatabase::class.java,
+//                "habitdb"
+//            ).build()
 
         operator fun invoke(context: Context) {
             if (instance == null) {

@@ -12,8 +12,8 @@ interface UserDao{
     @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun insertAll (vararg user: User)
 
-//    @Update
-//    fun updateHabit(habit: Habit)
+    @Update
+    fun updateUser(user: User)
 
     @Delete
     fun deleteUser(user: User)
@@ -23,4 +23,7 @@ interface UserDao{
 
     @Query("SELECT * FROM user WHERE username=:username AND password=:password")
     fun login(username:String, password: String): User
+
+    @Query("SELECT * FROM user WHERE isLoggedIn = 1 LIMIT 1")
+    fun getLoggedInUser(): User?
 }
