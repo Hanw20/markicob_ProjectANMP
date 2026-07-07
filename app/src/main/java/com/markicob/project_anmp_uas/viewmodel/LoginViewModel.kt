@@ -1,9 +1,9 @@
-package com.markicob.Project_ANMP.viewmodel
+package com.markicob.project_anmp_uas.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.markicob.Project_ANMP.model.HabitDatabase
+import com.markicob.project_anmp_uas.model.HabitDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

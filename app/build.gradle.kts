@@ -3,15 +3,15 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("androidx.navigation.safeargs.kotlin")
 
-    id("org.jetbrains.kotlin.kapt")
+    id("kotlin-kapt")
 }
 
 android {
-    namespace = "com.markicob.Project_ANMP"
+    namespace = "com.markicob.project_anmp_uas"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.markicob.Project_ANMP"
+        applicationId = "com.markicob.project_anmp_uas"
         minSdk = 26
         targetSdk = 36
         versionCode = 1

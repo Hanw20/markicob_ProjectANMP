@@ -1,4 +1,4 @@
-package com.markicob.Project_ANMP.view
+package com.markicob.project_anmp_uas.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.markicob.Project_ANMP.databinding.FragmentNewHabitBinding
-import com.markicob.Project_ANMP.model.Habit
-import com.markicob.Project_ANMP.viewmodel.ListViewModel
-import java.util.UUID
+import com.markicob.project_anmp_uas.databinding.FragmentNewHabitBinding
+import com.markicob.project_anmp_uas.model.Habit
+import com.markicob.project_anmp_uas.viewmodel.ListViewModel
 
 class NewHabitFragment : Fragment() {
 
@@ -56,7 +55,7 @@ class NewHabitFragment : Fragment() {
                 binding.tvError.text = "Goal harus berupa angka lebih dari 0!"
             } else {
                 val newHabit = Habit(
-                    id = UUID.randomUUID().toString(),
+                    id = 0,
                     habitName = name,
                     description = desc,
                     progress = 0,

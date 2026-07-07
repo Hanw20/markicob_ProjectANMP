@@ -1,4 +1,4 @@
-package com.markicob.Project_ANMP.model
+package com.markicob.project_anmp_uas.model
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -22,7 +22,7 @@ interface UserDao{
     fun selectAllUser(): List<User>
 
     @Query("SELECT * FROM user WHERE username=:username AND password=:password")
-    fun login(username:String, password: String): User
+    fun login(username:String, password: String): User?
 
     @Query("SELECT * FROM user WHERE isLoggedIn = 1 LIMIT 1")
     fun getLoggedInUser(): User?

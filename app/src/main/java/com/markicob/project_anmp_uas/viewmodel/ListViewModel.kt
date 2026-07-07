@@ -1,13 +1,10 @@
-package com.markicob.Project_ANMP.viewmodel
+package com.markicob.project_anmp_uas.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.markicob.Project_ANMP.model.Habit
-import com.markicob.Project_ANMP.model.HabitDatabase
-import com.markicob.Project_ANMP.util.FileHelper
+import com.markicob.project_anmp_uas.model.Habit
+import com.markicob.project_anmp_uas.model.HabitDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,15 +16,16 @@ class ListViewModel(application: Application) : AndroidViewModel(application), C
     val habitLoadErrorLD = MutableLiveData<Boolean>()
     val loadingLD = MutableLiveData<Boolean>()
     val habitDetailLD = MutableLiveData<Habit>()
-    private val fileHelper = FileHelper(getApplication())
-    private var allHabits = arrayListOf<Habit>()
 
+//    private val fileHelper = FileHelper(getApplication())
+//    private var allHabits = arrayListOf<Habit>()
+//
     private var job = Job()
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 
     fun refresh() {
-        loadingLD.value = true
+//        loadingLD.value = true
 //        val savedHabits = fileHelper.readFromFile()
 //        if (savedHabits.isEmpty()) {
 //            val dummy = arrayListOf(
@@ -47,6 +45,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application), C
        // habitLoadErrorLD.value = false
 //        loadingLD.value = false
 //        habitLoadErrorLD.value = false
+
 
         loadingLD.postValue(true)
         habitLoadErrorLD.postValue(false)

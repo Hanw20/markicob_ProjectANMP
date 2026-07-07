@@ -1,4 +1,4 @@
-package com.markicob.Project_ANMP.view
+package com.markicob.project_anmp_uas.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,10 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.markicob.Project_ANMP.databinding.FragmentHabitListBinding
-import com.markicob.Project_ANMP.viewmodel.ListViewModel
+import com.markicob.project_anmp_uas.databinding.FragmentHabitListBinding
+import com.markicob.project_anmp_uas.model.Habit
+import com.markicob.project_anmp_uas.viewmodel.ListViewModel
 
-class HabitListFragment : Fragment() {
+class HabitListFragment : Fragment() , HabitCardListener{
 
     private lateinit var viewModel: ListViewModel
     private lateinit var habitListAdapter: HabitListAdapter
@@ -58,7 +59,9 @@ class HabitListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
-        habitListAdapter = HabitListAdapter(arrayListOf(), viewModel)
+//        habitListAdapter = HabitListAdapter(arrayListOf(), viewModel)
+        habitListAdapter = HabitListAdapter(arrayListOf(), this)
+
 
         binding.recViewHabit.layoutManager = LinearLayoutManager(context)
         binding.recViewHabit.adapter = habitListAdapter
@@ -75,5 +78,17 @@ class HabitListFragment : Fragment() {
             val action = HabitListFragmentDirections.actionNewHabitFragment()
             it.findNavController().navigate(action)
         }
+    }
+
+    override fun onAddClick(habit: Habit) {
+        viewModel.updateProgress(habit, 1)
+    }
+
+    override fun onMinClick(habit: Habit) {
+        viewModel.updateProgress(habit, -1)
+    }
+
+    override fun onTitleClick(habit: Habit) {
+        TODO("Not yet implemented")
     }
 }

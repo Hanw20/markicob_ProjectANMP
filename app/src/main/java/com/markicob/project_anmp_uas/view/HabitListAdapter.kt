@@ -1,16 +1,16 @@
-package com.markicob.Project_ANMP.view
+package com.markicob.project_anmp_uas.view
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.markicob.Project_ANMP.R
-import com.markicob.Project_ANMP.databinding.HabitListItemBinding
-import com.markicob.Project_ANMP.model.Habit
-import com.markicob.Project_ANMP.viewmodel.ListViewModel
+import com.markicob.project_anmp_uas.R
+import com.markicob.project_anmp_uas.databinding.HabitListItemBinding
+import com.markicob.project_anmp_uas.model.Habit
 
-class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListViewModel)
+//class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListViewModel)
+class HabitListAdapter(val habitList: ArrayList<Habit>, val listener: HabitCardListener)
     :RecyclerView.Adapter<HabitListAdapter.HabitViewHolder>() {
 
     class HabitViewHolder(var binding: HabitListItemBinding)
@@ -25,8 +25,11 @@ class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListView
     override fun onBindViewHolder(holder: HabitViewHolder, position: Int) {
         val habit = habitList[position]
 
-        holder.binding.txtHabitName.text = habit.habitName
-        holder.binding.txtDescription.text = habit.description
+        holder.binding.habit = habit
+        holder.binding.listener = listener
+        //Ditutup dulu progress 2
+//        holder.binding.txtHabitName.text = habit.habitName
+//        holder.binding.txtDescription.text = habit.description
         
         // holder.binding.imgIcon.setImageResource(...)
 
@@ -54,12 +57,17 @@ class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListView
         }
 
         holder.binding.tvStatus.background = drawable
-        holder.binding.btnAdd.setOnClickListener {
-            viewModel.updateProgress(position, 1)
-        }
-        holder.binding.btnMin.setOnClickListener {
-            viewModel.updateProgress(position, -1)
-        }
+
+
+       //tutup dulu progress 2
+//        holder.binding.btnAdd.setOnClickListener {
+//            viewModel.updateProgress(position, 1)
+//        }
+//        holder.binding.btnMin.setOnClickListener {
+//            viewModel.updateProgress(position, -1)
+//        }
+
+
         val iconRes = when (habit.icon) {
             "Water" -> R.drawable.ic_water
             "Exercise" -> R.drawable.ic_fitness

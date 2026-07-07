@@ -1,7 +1,6 @@
-package com.markicob.Project_ANMP.model
+package com.markicob.project_anmp_uas.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
 
 
 @Entity
