@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 @Database(
     arrayOf(Habit::class, User::class), version=1
@@ -38,6 +40,17 @@ abstract class HabitDatabase : RoomDatabase(){
                     instance ?: buildDatabase(context).also {
                         instance = it
                     }
+                }
+            }
+        }
+        // Fungsi baru: seed user hardcode kalau tabel masih kosong
+        suspend fun seedUserIfNeeded(context: Context) {
+            withContext(Dispatchers.IO) {
+                val db = buildDatabase(context)
+                if (db.userDao().selectAllUser().isEmpty()) {
+                    db.userDao().insertAll(
+                        User(username = "student", password = "123")
+                    )
                 }
             }
         }

@@ -155,6 +155,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="4dp"
+                    android:enabled="@{habit.progress &lt; habit.goal}"
                     android:onClick="@{() -> listener.onAddClick(habit)}"
                     app:icon="@drawable/baseline_add_24"
                     app:layout_constraintBottom_toBottomOf="parent"

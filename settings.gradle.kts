@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Project_ANMP"
+rootProject.name = "project_anmp_uas"
 include(":app")
  

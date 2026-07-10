@@ -21,6 +21,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application), 
 
     fun checkSession() {
         launch {
+            HabitDatabase.seedUserIfNeeded(getApplication())
             val db = HabitDatabase.buildDatabase(getApplication())
             val user = db.userDao().getLoggedInUser()
             autoLoginLD.postValue(user != null)
@@ -40,4 +41,6 @@ class LoginViewModel(application: Application) : AndroidViewModel(application), 
             }
         }
     }
+
+
 }
