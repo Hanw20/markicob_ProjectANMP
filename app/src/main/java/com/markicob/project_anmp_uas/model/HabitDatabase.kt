@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import com.markicob.project_anmp_uas.util.util
 
 @Database(
     arrayOf(Habit::class, User::class), version=1
@@ -24,8 +25,7 @@ abstract class HabitDatabase : RoomDatabase(){
             instance ?: synchronized(LOCK) {
                 instance ?: Room.databaseBuilder(
                     context.applicationContext,
-                    HabitDatabase::class.java,
-                    "habitdb"
+                    HabitDatabase::class.java, "habitdb"
                 ).build().also { instance = it }
             }
 //            Room.databaseBuilder(

@@ -105,6 +105,7 @@ class ListViewModel(application: Application) : AndroidViewModel(application), C
         launch {
             val db = HabitDatabase.buildDatabase(getApplication())
             db.habitDao().updateHabit(habit)
+            habitsLD.postValue(ArrayList(db.habitDao().selectAllHabit()))
         }
     }
 

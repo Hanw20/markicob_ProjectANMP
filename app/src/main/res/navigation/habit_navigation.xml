@@ -13,6 +13,9 @@
         <action
             android:id="@+id/actionNewHabitFragment"
             app:destination="@id/newHabitFragment" />
+        <action
+            android:id="@+id/action_habitListFragment_to_editHabitFragment"
+            app:destination="@id/editHabitFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -28,4 +31,12 @@
         android:name="com.markicob.project_anmp_uas.view.NewHabitFragment"
         android:label="fragment_new_habit"
         tools:layout="@layout/fragment_new_habit" />
+    <fragment
+        android:id="@+id/editHabitFragment"
+        android:name="EditHabitFragment"
+        android:label="EditHabitFragment" >
+        <argument
+            android:name="habitld"
+            app:argType="integer" />
+    </fragment>
 </navigation>

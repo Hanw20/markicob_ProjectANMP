@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.markicob.project_anmp_uas.R
 import com.markicob.project_anmp_uas.databinding.HabitListItemBinding
@@ -81,6 +82,11 @@ class HabitListAdapter(val habitList: ArrayList<Habit>, val listener: HabitCardL
             else -> R.drawable.ic_other
         }
         holder.binding.imgIcon.setImageResource(iconRes)
+        holder.binding.btnEdit.setOnClickListener {
+            val currentHabitId = habitList[position].id
+            val action = HabitListFragmentDirections.actionHabitListFragmentToEditHabitFragment(currentHabitId)
+            Navigation.findNavController(it).navigate(action)
+        }
 
     }
 
