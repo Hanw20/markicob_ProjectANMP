@@ -82,7 +82,7 @@ class HabitListAdapter(val habitList: ArrayList<Habit>, val listener: HabitCardL
             else -> R.drawable.ic_other
         }
         holder.binding.imgIcon.setImageResource(iconRes)
-        holder.binding.btnEdit.setOnClickListener {
+        holder.binding.txtHabitName.setOnClickListener {
             val currentHabitId = habitList[position].id
             val action = HabitListFragmentDirections.actionHabitListFragmentToEditHabitFragment(currentHabitId)
             Navigation.findNavController(it).navigate(action)

@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_new_habit" />
     <fragment
         android:id="@+id/editHabitFragment"
-        android:name="EditHabitFragment"
+        android:name="com.markicob.project_anmp_uas.view.EditHabitFragment"
         android:label="EditHabitFragment" >
         <argument
             android:name="habitld"

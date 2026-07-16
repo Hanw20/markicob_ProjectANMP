@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import com.markicob.project_anmp_uas.util.util
+//import com.markicob.project_anmp_uas.util.util
 
 @Database(
     arrayOf(Habit::class, User::class), version=1
