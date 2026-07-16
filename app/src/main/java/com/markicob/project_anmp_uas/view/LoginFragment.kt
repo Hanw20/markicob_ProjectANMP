@@ -25,21 +25,7 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        binding.btnLogin.setOnClickListener {
-//            val username = binding.txtUsername.text.toString()
-//            val password = binding.txtPassword.text.toString()
-//
-//            if (username == "student" && password == "123") {
-//                val action = LoginFragmentDirections.actionHabitListFragment()
-//                it.findNavController().navigate(action)
-//            } else {
-//                binding.txtErrorLogin.visibility = View.VISIBLE
-//                binding.txtErrorLogin.text = "Username atau password salah!"
-//            }
-//        }
-//    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

@@ -25,28 +25,6 @@ class ListViewModel(application: Application) : AndroidViewModel(application), C
         get() = job + Dispatchers.IO
 
     fun refresh() {
-//        loadingLD.value = true
-//        val savedHabits = fileHelper.readFromFile()
-//        if (savedHabits.isEmpty()) {
-//            val dummy = arrayListOf(
-//                Habit("1", "Drink Water", "Stay hydrated", 3, 8, "glasses", "Water"),
-//                Habit("2", "Exercise", "Daily workout", 15, 30, "minutes", "Exercise")
-//            )
-//            habitsLD.value = dummy
-//            val jsonString = Gson().toJson(dummy)
-//            fileHelper.writeToFile(jsonString)
-//
-//        } else {
-//            val type = object : TypeToken<ArrayList<Habit>>() {}.type
-//            val habitsFromFile: ArrayList<Habit> = Gson().fromJson(savedHabits, type)
-//            habitsLD.value = habitsFromFile
-//        }
-       //habitsLD.value = allHabits
-       // habitLoadErrorLD.value = false
-//        loadingLD.value = false
-//        habitLoadErrorLD.value = false
-
-
         loadingLD.postValue(true)
         habitLoadErrorLD.postValue(false)
         launch{
@@ -56,19 +34,6 @@ class ListViewModel(application: Application) : AndroidViewModel(application), C
         }
     }
     fun addHabit(habit: Habit) {
-        //val currentList = habitsLD.value ?: arrayListOf()
-        //currentList.add(habit)
-        //allHabits.add(habit)
-        //repository.saveHabits(currentList)
-        //habitsLD.value = allHabits
-
-        //tdi ini
-//        val currentList = habitsLD.value ?: arrayListOf()
-//        currentList.add(habit)
-//        habitsLD.value = currentList
-//        val jsonString = Gson().toJson(currentList)
-//        fileHelper.writeToFile(jsonString)
-
         launch {
             val db = HabitDatabase.buildDatabase(getApplication())
             db.habitDao().insertAll(habit)
@@ -76,16 +41,6 @@ class ListViewModel(application: Application) : AndroidViewModel(application), C
         }
     }
     fun updateProgress(habit: Habit, delta: Int) {
-//    fun updateProgress(position: Int, delta: Int) {
-//        val currentList = habitsLD.value ?: return
-//        val habit = currentList[position]
-//        val newProgress = ((habit.progress ?: 0) + delta).coerceAtLeast(0)
-//        habit.progress = newProgress
-//       // repository.saveHabits(currentList)
-//        habitsLD.value = currentList
-//        val jsonString = Gson().toJson(currentList)
-//        fileHelper.writeToFile(jsonString)
-
         launch {
             val db = HabitDatabase.buildDatabase(getApplication())
             habit.progress = (habit.progress + delta).coerceAtLeast(0)

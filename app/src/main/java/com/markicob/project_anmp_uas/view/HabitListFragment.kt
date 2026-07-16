@@ -59,7 +59,6 @@ class HabitListFragment : Fragment() , HabitCardListener{
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(requireActivity()).get(ListViewModel::class.java)
-//        habitListAdapter = HabitListAdapter(arrayListOf(), viewModel)
         habitListAdapter = HabitListAdapter(arrayListOf(), this)
 
 

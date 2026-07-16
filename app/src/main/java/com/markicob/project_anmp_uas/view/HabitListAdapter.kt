@@ -10,7 +10,6 @@ import com.markicob.project_anmp_uas.R
 import com.markicob.project_anmp_uas.databinding.HabitListItemBinding
 import com.markicob.project_anmp_uas.model.Habit
 
-//class HabitListAdapter(val habitList : ArrayList<Habit>, val viewModel: ListViewModel)
 class HabitListAdapter(val habitList: ArrayList<Habit>, val listener: HabitCardListener)
     :RecyclerView.Adapter<HabitListAdapter.HabitViewHolder>() {
 
@@ -28,13 +27,7 @@ class HabitListAdapter(val habitList: ArrayList<Habit>, val listener: HabitCardL
 
         holder.binding.habit = habit
         holder.binding.listener = listener
-        //Ditutup dulu progress 2
-//        holder.binding.txtHabitName.text = habit.habitName
-//        holder.binding.txtDescription.text = habit.description
-        
-        // holder.binding.imgIcon.setImageResource(...)
 
-        // Progress bar
         val progress = habit.progress ?: 0
         val goal = habit.goal ?: 1
 
@@ -42,7 +35,6 @@ class HabitListAdapter(val habitList: ArrayList<Habit>, val listener: HabitCardL
         holder.binding.progressBar.progress = progress
         holder.binding.txtProgress.text = "$progress / $goal ${habit.unit}"
 
-        // Status label
         val drawable = GradientDrawable()
         drawable.cornerRadius = 40f
         if (progress >= goal) {
@@ -58,16 +50,6 @@ class HabitListAdapter(val habitList: ArrayList<Habit>, val listener: HabitCardL
         }
 
         holder.binding.tvStatus.background = drawable
-
-
-       //tutup dulu progress 2
-//        holder.binding.btnAdd.setOnClickListener {
-//            viewModel.updateProgress(position, 1)
-//        }
-//        holder.binding.btnMin.setOnClickListener {
-//            viewModel.updateProgress(position, -1)
-//        }
-
 
         val iconRes = when (habit.icon) {
             "Water" -> R.drawable.ic_water

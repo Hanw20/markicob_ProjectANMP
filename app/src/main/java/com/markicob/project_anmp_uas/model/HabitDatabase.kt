@@ -28,11 +28,6 @@ abstract class HabitDatabase : RoomDatabase(){
                     HabitDatabase::class.java, "habitdb"
                 ).build().also { instance = it }
             }
-//            Room.databaseBuilder(
-//                context.applicationContext,
-//                HabitDatabase::class.java,
-//                "habitdb"
-//            ).build()
 
         operator fun invoke(context: Context) {
             if (instance == null) {
@@ -43,7 +38,6 @@ abstract class HabitDatabase : RoomDatabase(){
                 }
             }
         }
-        // Fungsi baru: seed user hardcode kalau tabel masih kosong
         suspend fun seedUserIfNeeded(context: Context) {
             withContext(Dispatchers.IO) {
                 val db = buildDatabase(context)
