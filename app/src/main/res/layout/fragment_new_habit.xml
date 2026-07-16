@@ -7,6 +7,7 @@
     <data>
         <variable name="habit" type="com.markicob.project_anmp_uas.model.Habit" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -56,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
-                android:lines="2" />
+                android:lines="2"
+                android:text="@={habit.description}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +75,8 @@
                 android:id="@+id/etGoal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@={`` + habit.goal}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -90,7 +93,8 @@
                 android:id="@+id/etUnit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:inputType="text"
+                android:text="@={habit.unit}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
